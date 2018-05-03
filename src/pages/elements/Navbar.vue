@@ -131,13 +131,15 @@ document.addEventListener('touchstart', function () {}, true)
 
   .nav {
     height: 80px;
-    background: #c22227;
+    background-color: #1D3246;
     display: grid;
     grid-template-columns: 10px repeat(5, 1fr) 10px;
     z-index: 2;
+    box-shadow: 0px 6px 2px #d1d1d1;
   }
 
   .logo {
+    background-image: url('../../assets/totalResponseLogoMobile.png');
     background-repeat: no-repeat;
     grid-column-start: 1;
     grid-column-end: 4;

@@ -92,22 +92,13 @@ export default {
     padding-left: 0px;
     padding-right:0px;
     display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 20px 500px 10px 20px;
   }
 
   .loginBox {
     grid-column: 1;
     grid-row: 2;
     text-align: center;
-    box-shadow: 2px 6px #d1d1d1;
-    border-radius: 24px;
-    background: @backgroundColor;
-    background-image: -webkit-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -moz-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -ms-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -o-linear-gradient(top, @lightTR, @darkTR);
-    background-image: linear-gradient(to bottom, @lightTR, @darkTR);
+    background-color: #334B62;
     display: grid;
     grid-template-columns: 1fr 20px repeat(2, 1fr) 20px 1fr;
     grid-template-rows: 10px 180px repeat(4, 1fr);
