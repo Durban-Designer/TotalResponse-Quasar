@@ -131,20 +131,13 @@ document.addEventListener('touchstart', function () {}, true)
 
   .nav {
     height: 80px;
-    background: #0c2069;
-    background-image: -webkit-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -moz-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -ms-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -o-linear-gradient(top, @lightTR, @darkTR);
-    background-image: linear-gradient(to bottom, @lightTR, @darkTR);
+    background: #c22227;
     display: grid;
     grid-template-columns: 10px repeat(5, 1fr) 10px;
     z-index: 2;
-    box-shadow: 0px 6px 2px #d1d1d1;
   }
 
   .logo {
-    background-image: url('../../assets/totalResponseLogoMobile.png');
     background-repeat: no-repeat;
     grid-column-start: 1;
     grid-column-end: 4;
