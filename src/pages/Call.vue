@@ -1,0 +1,896 @@
+<template>
+  <div class="main">
+    <audio id="audio" autoplay></audio>
+    <div v-bind:class="connecting">
+      <h3>Connecting...</h3>
+    </div>
+    <div v-bind:class="callIcons">
+      <!-- Fire Tokens -->
+      <div v-bind:class="fireTokenLogic" v-on:click="fireToken"><h2>Fire</h2><div class="fireIcon"></div></div>
+      <div v-bind:class="buildingFireTokenLogic" v-on:click="buildingFire">Building Fire</div>
+      <div v-bind:class="explosionTokenLogic" v-on:click="explosion">Explosion</div>
+      <div v-bind:class="forestFireTokenLogic" v-on:click="forestFire">Forest Fire</div>
+      <div v-bind:class="otherFireTokenLogic" v-on:click="otherFire">Other</div>
+      <!-- Police Tokens -->
+      <div v-bind:class="policeTokenLogic" v-on:click="policeToken"><h2>Police</h2><div class="policeIcon"></div></div>
+      <div v-bind:class="kidnappingTokenLogic" v-on:click="kidnapping">Kidnapping</div>
+      <div v-bind:class="assaultTokenLogic" v-on:click="assault">Assault</div>
+      <div v-bind:class="massShootingTokenLogic" v-on:click="massShooting">Mass Shooting</div>
+      <div v-bind:class="robberyTokenLogic" v-on:click="robbery">Robbery</div>
+      <div v-bind:class="rapeTokenLogic" v-on:click="rape">Rape</div>
+      <div v-bind:class="otherPoliceTokenLogic" v-on:click="otherPolice">Other</div>
+      <!-- Medical Tokens -->
+      <div v-bind:class="medicalTokenLogic" v-on:click="medicalToken"><h2>Medical</h2><div class="medicalIcon"></div></div>
+      <div v-bind:class="heartAttackTokenLogic" v-on:click="heartAttack">Heart Attack</div>
+      <div v-bind:class="gunshotTokenLogic" v-on:click="gunshot">Gunshot</div>
+      <div v-bind:class="massCasualtyTokenLogic" v-on:click="massCasualty">Mass Casualty</div>
+      <div v-bind:class="otherMedicalTokenLogic" v-on:click="otherMedical">Other</div>
+      <!-- Utility Tokens -->
+      <div v-bind:class="utilityTokenLogic" v-on:click="utilityToken"><h2>Utility</h2><div class="utilityIcon"></div></div>
+      <div v-bind:class="gasLeakTokenLogic" v-on:click="gasLeak">Gas Leak</div>
+      <div v-bind:class="electricalTokenLogic" v-on:click="electrical">Electrical</div>
+      <div v-bind:class="waterTokenLogic" v-on:click="water">Water</div>
+      <div v-bind:class="otherUtilityTokenLogic" v-on:click="otherUtility">Other</div>
+    </div>
+    <div v-bind:class="callingIcons">
+      <div v-bind:class="muteIconOff" v-on:click="muteToggle"></div>
+      <div v-bind:class="muteIconOn" v-on:click="muteToggle"></div>
+      <div class="hangUpIcon" v-on:click="hangUp"></div>
+      <div v-bind:class="speakerIconOff" v-on:click="speakerToggle"></div>
+      <div v-bind:class="speakerIconOn" v-on:click="speakerToggle"></div>
+    </div>
+    <div v-bind:class="mapContainer">
+      <h1>Current Location:</h1>
+      <mapbox :access-token="this.mapboxToken" :map-options="this.mapOptions" @map-load="mapLoaded"></mapbox>
+    </div>
+  </div>
+</template>
+
+<script>
+import Mapbox from 'mapbox-gl-vue'
+import axios from 'axios'
+var sinchSms = require('sinch-sms')({
+  key: '8623407a-c954-4b57-980f-ff3a3088b279',
+  secret: 'W9hLHeFezUWzbjffgMfJ3A==',
+  ssl: true
+})
+export default {
+  name: 'Call',
+  components: {
+    'mapbox': Mapbox
+  },
+  data: function () {
+    return {
+      map: {},
+      tokenTouched: false,
+      fireTokenTouched: false,
+      policeTokenTouched: false,
+      medicalTokenTouched: false,
+      utilityTokenTouched: false,
+      emergencyType: 'Unknown',
+      name: 'Unknown',
+      address: 'Unknown',
+      bloodType: 'Unknown',
+      allergies: 'Unknown',
+      medicalInfo: 'Unknown',
+      call: false,
+      mute: false,
+      speaker: false,
+      latitude: 10,
+      longitude: 10,
+      altitude: 1,
+      accuracy: 0,
+      altitudeAccuracy: 0,
+      locationError: false,
+      sinchToken: '',
+      mapboxToken: 'pk.eyJ1IjoiZ3JhcGV0b2FzdCIsImEiOiJjajhkeHR5YzEwdXp4MnpwbWhqYzI4ejh0In0.JzUlf5asD6yOa5XvjUF5Ag',
+      mapOptions: {
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [0, 0],
+        zoom: 1
+      }
+    }
+  },
+  props: ['logged', 'token', 'userId'],
+  created () {
+    let vue = this
+    if (this.logged === false) {
+      this.$router.push('/login')
+    }
+    navigator.geolocation.getCurrentPosition(locationSuccess, locationFail)
+    function locationSuccess (position) {
+      vue.latitude = position.coords.latitude
+      vue.longitude = position.coords.longitude
+      vue.altitude = position.coords.altitude
+      vue.accuracy = position.coords.accuracy
+      vue.altitudeAccuracy = position.coords.altitudeAccuracy
+    }
+    function locationFail () {
+      alert('It seems we cant find you, please reload the page and try again.')
+      this.locationError = true
+    }
+    axios.get('http://54.191.145.227:81/users/' + vue.userId, {headers: { 'Authorization': 'JWT ' + vue.token }})
+      .then(function (response) {
+        vue.name = response.data.firstName + ' ' + response.data.middleName + ' ' + response.data.lastName
+        vue.address = response.data.addressOne + ' ' + response.data.addressTwo
+        vue.bloodType = response.data.bloodType
+        vue.allergies = response.data.allergies
+        vue.medicalInfo = response.data.additionalInfo
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  },
+  computed: {
+    callIcons: function () {
+      return {
+        callBox: this.call === false,
+        hidden: this.call !== false
+      }
+    },
+    fireTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === true,
+        fireToken: this.tokenTouched === false
+      }
+    },
+    buildingFireTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.fireTokenTouched === false,
+        buildingFireToken: this.tokenTouched === true && this.fireTokenTouched === true
+      }
+    },
+    explosionTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.fireTokenTouched === false,
+        explosionToken: this.tokenTouched === true && this.fireTokenTouched === true
+      }
+    },
+    forestFireTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.fireTokenTouched === false,
+        forestFireToken: this.tokenTouched === true && this.fireTokenTouched === true
+      }
+    },
+    otherFireTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.fireTokenTouched === false,
+        otherFireToken: this.tokenTouched === true && this.fireTokenTouched === true
+      }
+    },
+    policeTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === true,
+        policeToken: this.tokenTouched === false
+      }
+    },
+    kidnappingTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.policeTokenTouched === false,
+        kidnappingToken: this.tokenTouched === true && this.policeTokenTouched === true
+      }
+    },
+    assaultTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.policeTokenTouched === false,
+        assaultToken: this.tokenTouched === true && this.policeTokenTouched === true
+      }
+    },
+    massShootingTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.policeTokenTouched === false,
+        massShootingToken: this.tokenTouched === true && this.policeTokenTouched === true
+      }
+    },
+    robberyTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.policeTokenTouched === false,
+        robberyToken: this.tokenTouched === true && this.policeTokenTouched === true
+      }
+    },
+    rapeTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.policeTokenTouched === false,
+        rapeToken: this.tokenTouched === true && this.policeTokenTouched === true
+      }
+    },
+    otherPoliceTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.policeTokenTouched === false,
+        otherPoliceToken: this.tokenTouched === true && this.policeTokenTouched === true
+      }
+    },
+    medicalTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === true,
+        medicalToken: this.tokenTouched === false
+      }
+    },
+    heartAttackTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.medicalTokenTouched === false,
+        heartAttackToken: this.tokenTouched === true && this.medicalTokenTouched === true
+      }
+    },
+    gunshotTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.medicalTokenTouched === false,
+        gunshotToken: this.tokenTouched === true && this.medicalTokenTouched === true
+      }
+    },
+    massCasualtyTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.medicalTokenTouched === false,
+        massCasualtyToken: this.tokenTouched === true && this.medicalTokenTouched === true
+      }
+    },
+    otherMedicalTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.medicalTokenTouched === false,
+        otherMedicalToken: this.tokenTouched === true && this.medicalTokenTouched === true
+      }
+    },
+    utilityTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === true,
+        utilityToken: this.tokenTouched === false
+      }
+    },
+    gasLeakTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.utilityTokenTouched === false,
+        gasLeakToken: this.tokenTouched === true && this.utilityTokenTouched === true
+      }
+    },
+    electricalTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.utilityTokenTouched === false,
+        electricalToken: this.tokenTouched === true && this.utilityTokenTouched === true
+      }
+    },
+    waterTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.utilityTokenTouched === false,
+        waterToken: this.tokenTouched === true && this.utilityTokenTouched === true
+      }
+    },
+    otherUtilityTokenLogic: function () {
+      return {
+        hidden: this.tokenTouched === false || this.utilityTokenTouched === false,
+        otherUtilityToken: this.tokenTouched === true && this.utilityTokenTouched === true
+      }
+    },
+    callingIcons: function () {
+      return {
+        callBox: this.call === true,
+        hidden: this.call !== true
+      }
+    },
+    connecting: function () {
+      return {
+        connect: this.call === true,
+        hidden: this.call !== true
+      }
+    },
+    muteIconOff: function () {
+      return {
+        muteIconOff: this.mute === true,
+        hidden: this.mute !== true
+      }
+    },
+    muteIconOn: function () {
+      return {
+        muteIconOn: this.mute === false,
+        hidden: this.mute !== false
+      }
+    },
+    speakerIconOff: function () {
+      return {
+        speakerIconOff: this.speaker === true,
+        hidden: this.speaker !== true
+      }
+    },
+    speakerIconOn: function () {
+      return {
+        speakerIconOn: this.speaker === false,
+        hidden: this.speaker !== false
+      }
+    },
+    mapContainer: function () {
+      return {
+        currentLocation: this.call === true,
+        hidden: this.call !== true
+      }
+    }
+  },
+  methods: {
+    mapLoaded (map) {
+      let vue = this
+      vue.map = map
+    },
+    fireToken () {
+      this.tokenTouched = true
+      this.fireTokenTouched = true
+    },
+    buildingFire () {
+      this.emergencyType = 'Building Fire'
+      this.callHelp()
+    },
+    explosion () {
+      this.emergencyType = 'Explosion'
+      this.callHelp()
+    },
+    forestFire () {
+      this.emergencyType = 'Forest Fire'
+      this.callHelp()
+    },
+    otherFire () {
+      this.emergencyType = 'Other Fire'
+      this.callHelp()
+    },
+    policeToken () {
+      this.tokenTouched = true
+      this.policeTokenTouched = true
+    },
+    kidnapping () {
+      this.emergencyType = 'Kidnapping'
+      this.callHelp()
+    },
+    assault () {
+      this.emergencyType = 'Assault'
+      this.callHelp()
+    },
+    massShooting () {
+      this.emergencyType = 'Mass Shooting'
+      this.callHelp()
+    },
+    robbery () {
+      this.emergencyType = 'Robbery'
+      this.callHelp()
+    },
+    rape () {
+      this.emergencyType = 'Rape'
+      this.callHelp()
+    },
+    otherPolice () {
+      this.emergencyType = 'Other Police'
+      this.callHelp()
+    },
+    medicalToken () {
+      this.tokenTouched = true
+      this.medicalTokenTouched = true
+    },
+    heartAttack () {
+      this.emergencyType = 'Heart Attack'
+      this.callHelp()
+    },
+    gunshot () {
+      this.emergencyType = 'Gunshot Wound'
+      this.callHelp()
+    },
+    massCasualty () {
+      this.emergencyType = 'Mass Casualty'
+      this.callHelp()
+    },
+    otherMedical () {
+      this.emergencyType = 'Other Medical'
+      this.callHelp()
+    },
+    utilityToken () {
+      this.tokenTouched = true
+      this.utilityTokenTouched = true
+    },
+    gasLeak () {
+      this.emergencyType = 'Gas Leak'
+      this.callHelp()
+    },
+    electrical () {
+      this.emergencyType = 'Electrical'
+      this.callHelp()
+    },
+    water () {
+      this.emergencyType = 'Water'
+      this.callHelp()
+    },
+    otherUtility () {
+      this.emergencyType = 'Other Utility'
+      this.callHelp()
+    },
+    callHelp () {
+      let vue = this
+      this.call = true
+      if (this.locationError === false) {
+        sinchSms.send(
+          '+16025581817',
+          'Emergency Type: ' + vue.emergencyType +
+          ' Name: ' + vue.name +
+          ' Home Address: ' + vue.address +
+          ' Blood Type: ' + vue.bloodType +
+          ' Allergies: ' + vue.allergies +
+          ' Medical Info: ' + vue.medicalInfo +
+          ' latitude: ' + vue.latitude +
+          ' Longitude: ' + vue.longitude +
+          ' Accuracy: ' + vue.accuracy +
+          ' Altitude: ' + vue.altitude +
+          ' Altitude Accuracy: ' + vue.altitudeAccuracy
+        ).then(function (response) {
+          console.log(response)
+        }).fail(function (error) {
+          console.log(error)
+        })
+      }
+      vue.map.jumpTo({
+        center: [vue.longitude, vue.latitude],
+        zoom: 15
+      })
+    },
+    hangUp () {
+      this.call = false
+      this.tokenTouched = false
+      this.fireTokenTouched = false
+      this.policeTokenTouched = false
+      this.medicalTokenTouched = false
+      this.utilityTokenTouched = false
+    },
+    muteToggle () {
+      if (this.mute === false) {
+        this.mute = true
+      } else {
+        this.mute = false
+      }
+    },
+    speakerToggle () {
+      if (this.speaker === false) {
+        this.speaker = true
+      } else {
+        this.speaker = false
+      }
+    }
+  }
+}
+</script>
+
+<style scoped lang="less">
+  @tokenBackground: #999;
+
+  .main {
+    margin-bottom: 100px;
+    text-align: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10px 1fr 10px;
+    grid-template-rows: 100px 140px 4px 200px;
+    grid-gap: 0;
+  }
+
+  body {
+    margin:0;
+    padding:0;
+  }
+
+  .connect {
+    font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
+    font-size: 2.4em;
+    margin: 0;
+    font-style: oblique;
+    color: #EF1931;
+    text-shadow: 4px 4px 5px grey;
+    grid-column-start: 2;
+    grid-column-end: 8;
+    grid-row: 1;
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 10;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .callIcons{
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 80px 80px 80px;
+    grid-gap: 0;
+  }
+
+  .fireToken {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+    display: grid;
+    grid-template-columns: 80px 60px;
+  }
+
+  .fireToken h2 {
+    font-size: 1em;
+    width: 80px;
+    line-height: 60px;
+    margin: 0;
+    grid-column: 1;
+  }
+
+  .fireIcon {
+    background-image: url('../assets/fireIcon.png');
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    grid-column: 2;
+  }
+
+  .buildingFireToken {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .explosionToken {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .forestFireToken {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .otherFireToken {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .policeToken {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 80px 60px;
+    background-color: @tokenBackground;
+  }
+
+  .policeToken h2 {
+    font-size: 1em;
+    width: 80px;
+    line-height: 60px;
+    margin: 0;
+    grid-column: 1;
+  }
+
+  .policeIcon {
+    background: url('../assets/policeIcon.png');
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    grid-column: 2;
+  }
+
+  .kidnappingToken {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .assaultToken {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .massShootingToken {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .robberyToken {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .rapeToken {
+    grid-column: 1;
+    grid-row: 3;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .otherPoliceToken {
+    grid-column: 2;
+    grid-row: 3;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .medicalToken {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 80px 60px;
+    background-color: @tokenBackground;
+  }
+
+  .medicalToken h2 {
+    font-size: 1em;
+    width: 80px;
+    line-height: 60px;
+    margin: 0;
+    grid-column: 1;
+  }
+
+  .medicalIcon {
+    background: url('../assets/medicalIcon.png');
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    grid-column: 2;
+  }
+
+  .heartAttackToken {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .gunshotToken {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .massCasualtyToken {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .otherMedicalToken {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .utilityToken {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 80px 60px;
+    background-color: @tokenBackground;
+  }
+
+  .utilityToken h2 {
+    font-size: 1em;
+    width: 80px;
+    line-height: 60px;
+    margin: 0;
+    grid-column: 1;
+  }
+
+  .utilityIcon {
+    background: url('../assets/utilityIcon.png');
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    grid-column: 2;
+  }
+
+  .gasLeakToken {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .electricalToken {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .waterToken {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .otherUtilityToken {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 10px;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    background-color: @tokenBackground;
+  }
+
+  .callingIcons {
+    display: grid;
+    grid-template-columns: 10px repeat(3, 1fr) 10px;
+    grid-gap: 0;
+  }
+
+  .muteIconOff {
+    grid-column: 2;
+    width: 50px;
+    height: 50px;
+    margin-top: 40px;
+    background-image: url('../assets/muteOff.png');
+    background-repeat: no-repeat;
+  }
+
+  .muteIconOn {
+    grid-column: 2;
+    width: 50px;
+    height: 50px;
+    margin-top: 40px;
+    background-image: url('../assets/muteOn.png');
+    background-repeat: no-repeat;
+  }
+
+  .hangUpIcon {
+    grid-column: 3;
+    width: 100px;
+    height: 100px;
+    background-image: url('../assets/hangUpIcon.png');
+    background-repeat: no-repeat;
+  }
+
+  .speakerIconOff {
+    grid-column: 4;
+    width: 50px;
+    height: 50px;
+    margin-top: 40px;
+    background-image: url('../assets/speakerOff.png');
+    background-repeat: no-repeat;
+  }
+
+  .speakerIconOn {
+    grid-column: 4;
+    width: 50px;
+    height: 50px;
+    margin-top: 40px;
+    background-image: url('../assets/speakerOn.png');
+    background-repeat: no-repeat;
+  }
+
+  .callBox {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row: 2;
+    width: 100%;
+  }
+
+  .currentLocation {
+    width: 100%;
+    text-shadow: 4px 4px 5px grey;
+    font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
+    grid-column-start: 1;
+    grid-column-end: 10;
+    grid-row: 4;
+    color: #3f62ad;
+    text-align: left;
+  }
+
+  .currentLocation h1 {
+    text-align: center;
+  }
+
+  #map {
+    width: 100%;
+    height: 300px;
+    margin: 1.2%;
+  }
+  @media screen and (min-width: 414px) {
+    .callBox {
+      grid-column-start: 1;
+      grid-column-end: 10;
+    }
+}
+
+</style>
