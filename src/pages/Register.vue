@@ -14,7 +14,7 @@
         <input type="text" class="userName" v-model="user.userName" placeholder="Email Address" required/>
         <input type="password" class="password" v-model="user.password" placeholder="Password" required/>
         <input type="number" class="phone" v-model="user.phone" placeholder="Phone Number" required/><br/>
-        <button class="next" v-on:click="paymentTabClick">Next</button>
+        <button class="nextAccount" v-on:click="paymentTabClick">Next</button>
       </div>
       <div v-bind:class="paymentState" >
         <h1>Payment Info</h1>
@@ -32,8 +32,8 @@
           <option value="individual">Individual</option>
           <option value="family">Family</option>
         </select><br>
-        <h2 v-bind:class="planStateI"> $25 per year</h2>
-        <h2 v-bind:class="planStateF"> $40 per year</h2>
+        <h2 v-bind:class="planStateI">$25 per year</h2>
+        <h2 v-bind:class="planStateF">$40 per year</h2>
         <button class="nextPayment" v-on:click="medicalTabClick">Next</button>
       </div>
       <div v-bind:class="medicalState" >
@@ -64,11 +64,8 @@
       </div>
       <div class="tabs">
         <div v-bind:class="accountTab" v-on:click="accountTabClick">Account</div>
-          <div v-bind:class="accountIcon"></div>
         <div v-bind:class="paymentTab" v-on:click="paymentTabClick">Payment</div>
-          <div v-bind:class="paymentIcon"></div>
         <div v-bind:class="medicalTab" v-on:click="medicalTabClick">Medical</div>
-          <div v-bind:class="medicalIcon"></div>
       </div>
     </div>
   </div>
@@ -283,98 +280,86 @@ export default {
   @bodyText: "LiberationSans";
 
   .main {
-    margin-top: 20px;
+    background-image: url('../assets/TRlog.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     width: 100%;
+    height: 100%;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 0 510px 10px;
     overflow: hidden;
+    position: fixed;
   }
 
   .hidden {
     display: none;
   }
 
-  ::-webkit-input-placeholder {
-    color: @textColor;
-  }
-
-  :-moz-placeholder {
-    color: @textColor;
-    opacity: 1;
-  }
-
-  ::-moz-placeholder {
-    color: @textColor;
-    opacity: 1;
-  }
-
-  :-ms-input-placeholder {
-    color: @textColor;
+  ::placeholder {
+    color: #222;
   }
 
   .registerBox {
+    margin-top: 100px;
     grid-column: 1;
     grid-row: 2;
     text-align: center;
-    box-shadow: 2px 6px #d1d1d1;
-    border-radius: 24px;
+    border-radius: 5px;
     overflow: hidden;
-    background: @backgroundColor;
-    background-image: -webkit-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -moz-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -ms-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -o-linear-gradient(top, @lightTR, @darkTR);
-    background-image: linear-gradient(to bottom, @lightTR, @darkTR);
   }
-
+  .nextAccount {
+    grid-row: 8;
+    grid-column-start: 6;
+    grid-column-end: 8;
+    font-size: 1.5em;
+    z-index: 10;
+    margin-top: 10%;
+    text-align: right;
+  }
   .accountInfo {
     grid-column: 2;
     grid-row: 3;
     display: grid;
-    grid-gap: 6px;
+    grid-gap: 2%;
     grid-template-columns: 20px repeat(6, 1fr) 20px;
-    grid-template-rows: 10px 40px repeat(5, 60px) 20px 60px 10px;
+    grid-template-rows: 10px 40px repeat(7, 60px);
   }
 
   .accountInfo input {
-    color: @textColor;
-    border: none !important;
-    border-bottom: 1px solid #fff !important;
+    padding-left: 3%;
+    color: white;
+    height: 30px;
+    border: 1px solid #fff !important;
     background: transparent;
     margin-top: 36px;
+    background-color: rgba(255, 255, 255, 0.3);
   }
 
   .accountInfo h1 {
-    font-family: @boldText;
     color: #fff;
-    text-shadow: 2px 1px 2px #515151;
-    -webkit-background-clip: text;
-       -moz-background-clip: text;
-            background-clip: text;
     grid-row: 1;
     grid-column-start: 1;
     grid-column-end: 9;
-    font-size: @baseFontSize + 1.2em;
+    font-size: 2em;
+    font-weight: 400;
   }
 
   .salutation {
-    font-family: @bodyText;
-    color: @textColor;
+    color: white;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row: 3;
+    margin-top: 35px;
     font-size: @baseFontSize;
     background: transparent;
-    margin-top: 30px;
+    height: 30px;
     border: 1px solid #fff;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    background-color: rgba(255, 255, 255, 0.3);
   }
 
   .firstName {
-    font-family: @bodyText;
     grid-column-start: 3;
     grid-column-end: 8;
     grid-row: 3;
@@ -382,7 +367,6 @@ export default {
   }
 
   .middleName {
-    font-family: @bodyText;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row: 4;
@@ -390,7 +374,6 @@ export default {
   }
 
   .lastName {
-    font-family: @bodyText;
     grid-column-start: 3;
     grid-column-end: 8;
     grid-row: 4;
@@ -398,7 +381,6 @@ export default {
   }
 
   .userName {
-    font-family: @bodyText;
     grid-column-start: 2;
     grid-column-end: 8;
     grid-row: 5;
@@ -406,7 +388,6 @@ export default {
   }
 
   .password {
-    font-family: @bodyText;
     grid-column-start: 2;
     grid-column-end: 8;
     grid-row: 6;
@@ -414,49 +395,38 @@ export default {
   }
 
   .phone {
-    font-family: @bodyText;
     grid-column-start: 2;
     grid-column-end: 8;
     grid-row: 7;
     font-size: @baseFontSize;
   }
 
-  .next {
-    font-family: @boldText;
-    grid-column-start: 2;
-    grid-column-end: 8;
-    grid-row: 9;
-    font-size: @baseFontSize + 1em;
-  }
-
   .paymentInfo {
     grid-column: 2;
     grid-row: 3;
     display: grid;
-    grid-gap: 6px;
+    grid-gap: 2%;
     grid-template-columns: 20px repeat(6, 1fr) 20px;
     grid-template-rows: 10px 40px repeat(5, 60px) 20px 60px 10px;
   }
 
   .paymentInfo input {
-    color: @textColor;
-    border: none !important;
-    border-bottom: 1px solid #fff !important;
+    padding-left: 3%;
+    color: white;
+    height: 30px;
+    border: 1px solid #fff !important;
     background: transparent;
     margin-top: 36px;
+    background-color: rgba(255, 255, 255, 0.3);
   }
 
   .paymentInfo h1 {
-    font-family: @boldText;
     color: #fff;
-    text-shadow: 2px 1px 2px #515151;
-    -webkit-background-clip: text;
-       -moz-background-clip: text;
-            background-clip: text;
     grid-row: 1;
     grid-column-start: 1;
     grid-column-end: 9;
-    font-size: @baseFontSize + 1em;
+    font-size: 2em;
+    font-weight: 400;
   }
 
   .card {
@@ -520,15 +490,12 @@ export default {
     grid-column-start: 4;
     grid-column-end: 6;
     grid-row: 6;
-    color: @textColor;
+    margin-top: 35px;
     font-size: @baseFontSize;
-    width: 100%;
     background: transparent;
-    margin-top: 30px;
+    height: 30px;
     border: 1px solid #fff;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    background-color: rgba(255, 255, 255, 0.3);
   }
 
   .zip {
@@ -547,15 +514,12 @@ export default {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row: 7;
-    color: @textColor;
+    margin-top: 35px;
     font-size: @baseFontSize;
-    width: 100%;
     background: transparent;
-    margin-top: 30px;
+    height: 30px;
     border: 1px solid #fff;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    background-color: rgba(255, 255, 255, 0.3);
   }
 
   .paymentInfo h2 {
@@ -563,27 +527,25 @@ export default {
     grid-column-end: 6;
     grid-row-start: 7;
     grid-row-end: 9;
-    font-family: @sideText;
-    background: @backgroundColor;
-    border-radius: 10px;
-    border-color: #fff;
-    border: 2px;
+    background: transparent;
+    border: none;
     padding-top: 12px;
     margin-left: 12px;
-    margin-top: 18px;
-    border-style: ridge;
+    margin-top: 23px;
     color: #fff;
-    font-size: @baseFontSize;
+    font-size: 1.3em;
     width: 100%;
+    text-decoration: underline;
   }
 
   .nextPayment {
-    font-family: @boldText;
-    grid-column-start: 2;
+    grid-row: 8;
+    grid-column-start: 6;
     grid-column-end: 8;
-    grid-row: 9;
-    //height: 100px;
-    font-size: @baseFontSize + 1em;
+    font-size: 1.5em;
+    z-index: 10;
+    margin-top: 10%;
+    text-align: right;
   }
 
   .medicalInfo {
@@ -597,52 +559,47 @@ export default {
 
   .medicalInfo textarea {
     color: @textColor;
-    border: 1px solid #fff !important;
-    border-radius: 10px !important;
-    font-family: @bodyText;
     background: transparent;
     margin-top: 50px;
+    border: 1px solid #fff !important;
+    background: transparent;
+    margin-top: 36px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 2%;
   }
 
   .medicalInfo h1 {
-    font-family: @boldText;
     color: #fff;
-    text-shadow: 2px 1px 2px #515151;
-    -webkit-background-clip: text;
-       -moz-background-clip: text;
-            background-clip: text;
     grid-row: 1;
     grid-column-start: 1;
     grid-column-end: 9;
-    font-size: @baseFontSize + 1em;
+    font-size: 2em;
+    font-weight: 400;
   }
 
   .blood {
+    height: 30px;
     text-align: left;
-    font-family: @bodyText;
-    color: @textColor;
+    color: white;
     grid-row: 4;
     grid-column-start: 2;
-    grid-column-end: 5;
-    font-size: @baseFontSize;
-    margin-top: 16px;
-    border: 1px solid #fff;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    grid-column-end: 4;
+    font-size: 1.3em;
+    margin-bottom: 16px;
+    padding-left: 3%;
+    color: white;
   }
 
   .bloodType {
+    width: 60px;
+    height: 30px;
     grid-column: 4;
     grid-row: 4;
     font-size: @baseFontSize;
-    color: @textColor;
     background: transparent;
-    margin-top: 10px;
     border: 1px solid #fff;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding-left: 10%;
   }
 
   .allergies {
@@ -651,6 +608,7 @@ export default {
     grid-row-start: 4;
     grid-row-end: 7;
     font-size: @baseFontSize;
+    margin-bottom: 5%;
   }
 
   .medical {
@@ -667,40 +625,37 @@ export default {
     grid-row: 8;
     margin-top: 16px;
     display: grid;
-    grid-template-columns: .1fr 1fr 2fr 1fr .1fr;
+    grid-template-columns: 40px 1fr ;
     text-align: center;
-    height: 140px;
+    height: 100px;
   }
 
   .conditionsBox {
-    grid-row: 2;
-    grid-column-start: 2;
-    grid-column-end: 3;
-    background-color: @textColor;
-    width: 50px;
-    height: 50px;
-    margin-top: 40px;
-    margin-left: 20px;
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    border: 2px white solid;
+    width: 30px;
+    height: 30px;
+    margin-top: 80px;
   }
 
   .conditionsBoxChecked {
-    grid-row: 2;
-    grid-column-start: 2;
-    grid-column-end: 3;
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 2;
     width: 50px;
     height: 50px;
-    margin-top: 40px;
-    margin-left: 20px;
+    margin-top: 80px;
   }
 
   .conditions h3 {
-    font-family: @bodyText;
-    color: @textColor;
+    color: white;
     padding-top: 28px;
-    font-size: @baseFontSize;
-    grid-row: 2;
-    grid-column-start: 3;
-    grid-column-end: 5;
+    font-size: 1.2em;
+    grid-row: 1;
+    grid-column-start: 2;
+    grid-column-end: 3;
   }
 
   .registerButton {
@@ -725,50 +680,35 @@ export default {
   }
 
   .tabs {
-    font-family: @sideText;
+    z-index: 10;
+    position: fixed;
     margin-top: 20px;
     grid-column: 1;
     grid-row: 3;
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     text-align: left;
-    text-shadow: 2px 3px #000;
     width: 100%;
-    line-height: 76px;
     font-size: 2.2em;
   }
 
   .accountTab {
+    text-align: center;
     background: transparent;
-    color: #6f89c2;
+    color: white;
   }
-
-  .accountIcon {
-    background-image: url("../assets/Person.svg");
-    background-repeat: no-repeat;
-  }
-
   .paymentTab {
+    text-align: center;
     background: transparent;
-    color: #7db64c;
-  }
-
-  .paymentIcon {
-    background-image: url("../assets/$$$.svg");
-    background-repeat: no-repeat;
+    color: white;
 
   }
 
   .medicalTab {
+    text-align: center;
     background: transparent;
-    color: #f25767;
+    color: white;
   }
-
-  .medicalIcon {
-    background-image: url("../assets/Stethescope.svg");
-    background-repeat: no-repeat;
-  }
-
   .termsLink {
     color: @medicalColor;
     text-decoration: underline;
@@ -781,27 +721,18 @@ export default {
   }
 
   button {
-    background: #0c2069;
-    background-image: -webkit-linear-gradient(top, @darkTR, @lightTR);
-    background-image: -moz-linear-gradient(top, @darkTR, @lightTR);
-    background-image: -ms-linear-gradient(top, @darkTR, @lightTR);
-    background-image: -o-linear-gradient(top, @darkTR, @lightTR);
-    background-image: linear-gradient(to bottom, @darkTR, @lightTR);
-    -webkit-border-radius: 10;
-    -moz-border-radius: 10;
-    border-radius: 10px;
-    font-family: "Candara";
-    font-weight: bold;
-    color: #ffffff;
-    font-size: 32px;
-    padding: 10px 30px 10px 30px;
-    border: 2px solid #9fb0d6;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1.5em;
     text-decoration: none;
-}
-
-button:hover {
-  background: #3f62ad;
-  text-decoration: none;
-}
+    height: 40px;
+  }
+  button:hover {
+    text-decoration: none;
+  }
+  button:active {
+    font-size: 1.2em;
+  }
 
 </style>

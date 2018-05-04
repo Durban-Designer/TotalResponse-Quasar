@@ -130,16 +130,13 @@ document.addEventListener('touchstart', function () {}, true)
   @bodyText: "LiberationSans";
 
   .nav {
-    height: 80px;
-    background-color: #1D3246;
+    height: 0px;
     display: grid;
     grid-template-columns: 10px repeat(5, 1fr) 10px;
-    z-index: 2;
-    box-shadow: 0px 6px 2px #d1d1d1;
+    z-index: 10;
   }
 
   .logo {
-    background-image: url('../../assets/totalResponseLogoMobile.png');
     background-repeat: no-repeat;
     grid-column-start: 1;
     grid-column-end: 4;
@@ -155,6 +152,7 @@ document.addEventListener('touchstart', function () {}, true)
     height: 100px;
     transform: scale(.75,.75);
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+    z-index: 10;
   }
 
   .navButtonIcon {
@@ -172,25 +170,25 @@ document.addEventListener('touchstart', function () {}, true)
   }
 
   .navtile {
-    width: 90%;
+    color: #354463;
+    opacity: .8;
+    font-weight: bold;
+    font-size: 1.3em;
+    box-shadow: 0px 3px 10px black;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 100%;
     height: 40px;
-    line-height: 40px;
-    border-radius: 10px;
+    line-height: 30px;
     margin: 10px 0;
     padding: 4px;
-    background: #0c2069;
-      background-image: -webkit-linear-gradient(top, @darkTR, @lightTR);
-      background-image: -moz-linear-gradient(top, @darkTR, @lightTR);
-      background-image: -ms-linear-gradient(top, @darkTR, @lightTR);
-      background-image: -o-linear-gradient(top, @darkTR, @lightTR);
-      background-image: linear-gradient(to bottom, @darkTR, @lightTR);
     text-align: center;
-    font-family: @boldText;
-    font-size: @baseFontSize + 1em;
     text-decoration: none;
-    color: #FFF;
     border: 2px solid #fff;
     z-index: 3;
+  }
+  .navtile:active {
+    opacity: 1.0;
   }
 
   .hidden {
