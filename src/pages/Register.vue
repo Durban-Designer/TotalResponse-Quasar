@@ -682,9 +682,7 @@ export default {
   .tabs {
     z-index: 10;
     position: fixed;
-    margin-top: 20px;
     grid-column: 1;
-    grid-row: 3;
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: left;
