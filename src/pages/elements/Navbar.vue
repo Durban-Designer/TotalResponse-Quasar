@@ -1,6 +1,6 @@
 <template>
   <div id="Navbar" class="nav">
-    <div class="logo" v-on:click="homeNav"></div>
+    <h3 v-on:click="homeNav">Total Response</h3>
     <div v-on:click="navToggle" class="navButton">
       <center><div v-bind:class="navbutton" class="navButtonIcon"></div></center>
     </div>
@@ -146,6 +146,13 @@ document.addEventListener('touchstart', function () {}, true)
     transform: scale(.70,.70)
   }
 
+  h3 {
+    position: fixed;
+    z-index: 10;
+    color: white;
+    margin-left: 2%;
+    font-size: 1.5em;
+  }
   .navButton {
     grid-column: 6;
     width: 100px;
@@ -209,7 +216,7 @@ document.addEventListener('touchstart', function () {}, true)
 
   @keyframes deactivateNav {
     0% {top: 80px;}
-    99% {top: 2000px;}
+    99% {top: -2000px;}
     100% {display: none;}
   }
 
@@ -230,7 +237,7 @@ document.addEventListener('touchstart', function () {}, true)
 
   .navpaneAnimation {
     animation-name: activateNav;
-    animation-duration: .8s;
+    animation-duration: .5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     display: inline;
@@ -258,13 +265,13 @@ document.addEventListener('touchstart', function () {}, true)
   }
 
   .navButtonAnimation {
-    animation: navButtonAnimation .4s steps(18);
+    animation: navButtonAnimation .3s steps(18);
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
   }
 
   .navButtonAnimationExit {
-    animation: navButtonAnimationReverse .5s steps(18);
+    animation: navButtonAnimationReverse .3s steps(18);
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
   }

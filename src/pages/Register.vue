@@ -311,12 +311,12 @@ export default {
   }
   .nextAccount {
     grid-row: 8;
-    grid-column-start: 6;
+    grid-column-start: 7;
     grid-column-end: 8;
     font-size: 1.5em;
     z-index: 10;
     margin-top: 10%;
-    text-align: right;
+    text-align: center;
   }
   .accountInfo {
     grid-column: 2;
@@ -540,12 +540,12 @@ export default {
 
   .nextPayment {
     grid-row: 8;
-    grid-column-start: 6;
+    grid-column-start: 7;
     grid-column-end: 8;
     font-size: 1.5em;
     z-index: 10;
     margin-top: 10%;
-    text-align: right;
+    text-align: center;
   }
 
   .medicalInfo {
@@ -641,12 +641,16 @@ export default {
   }
 
   .conditionsBoxChecked {
+    background-image: url('../assets/medicalIcon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
     grid-row: 1;
     grid-column-start: 1;
     grid-column-end: 2;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     margin-top: 80px;
+    border: 2px white solid;
   }
 
   .conditions h3 {
@@ -659,12 +663,11 @@ export default {
   }
 
   .registerButton {
-    font-family: @boldText;
-    grid-column-start: 2;
+    grid-column-start: 7;
     grid-column-end: 8;
-    grid-row: 12;
+    grid-row: 9;
     font-size: @baseFontSize + .5em;
-    padding-top: 14px;
+    text-align: center;
   }
 
   .conditionsRequiredButton {
@@ -708,7 +711,7 @@ export default {
     color: white;
   }
   .termsLink {
-    color: @medicalColor;
+    color: cyan;
     text-decoration: underline;
   }
 

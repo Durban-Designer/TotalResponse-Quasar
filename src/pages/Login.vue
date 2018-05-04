@@ -2,7 +2,6 @@
   <div class="main">
     <div class="loginBox">
       <h2>Peace of Mind.<br/> Wherever you go.</h2>
-      <h3>Total Response</h3>
       <div class="loginMain">
         <h1>Log In</h1>
         <input class="topLogin" v-model="user.email" placeholder="example@address.net" type="email" required>
@@ -122,16 +121,7 @@ export default {
     grid-column-end: 7;
     line-height: 30px;
   }
-  h3 {
-    grid-row: 1;
-    text-align: left;
-    grid-column-start: 1;
-    grid-column-end: 7;
-    color: white;
-    font-size: 2em;
-    margin-left: 5%;
-    line-height: 20px;
-  }
+
   .loginMain {
     width: 100%;
     grid-row: 4;
@@ -224,4 +214,10 @@ export default {
   button:active {
     font-size: 1.2em;
   }
+  @media only screen and (min-width:700px) {
+    h2 {
+      line-height: 50px;
+    }
+  }
+
 </style>
