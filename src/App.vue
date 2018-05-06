@@ -34,7 +34,7 @@ export default {
       this.user.token = user.token
       this.user.id = user.id
       this.user.isLoggedIn = true
-      this.$router.push('/call')
+      this.$router.push('/home')
     },
     register (user) {
       this.user.token = user.token

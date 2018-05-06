@@ -8,6 +8,7 @@
       <center>
         <div v-on:click="loginNav" v-bind:class="login">Login</div>
         <div v-on:click="registerNav" v-bind:class="login">Register</div>
+        <div v-on:click="homeNav" v-bind:class="logged">Home</div>
         <div v-on:click="accountNav" v-bind:class="logged">Account</div>
         <div v-on:click="callNav" v-bind:class="logged">Call</div>
         <div v-on:click="logOut" v-bind:class="logged">Log Out</div>
@@ -80,7 +81,7 @@ export default {
       if (this.loggedNav === false) {
         this.$router.push('/login')
       } else {
-        this.$router.push('/call')
+        this.$router.push('/home')
       }
       this.isToggled = false
       x = false

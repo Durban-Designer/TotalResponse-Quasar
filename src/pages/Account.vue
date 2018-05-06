@@ -290,7 +290,7 @@ export default {
   .main {
     width: 100%;
     position:fixed;
-    background-color: #414447;
+    background-color: #2b2b2b;
   }
 
   .hidden {
@@ -305,7 +305,7 @@ export default {
     width: 100%;
     display: grid;
     position: fixed;
-    background-color: #414447;
+    background-color: #2b2b2b;
   }
 
   .accountInfo {

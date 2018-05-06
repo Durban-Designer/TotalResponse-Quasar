@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <h1>Home</h1>
   </div>
 </template>
 
@@ -8,7 +9,7 @@ export default {
   name: 'home',
   created () {
     if (this.logged === true) {
-      this.$router.push('/call')
+      this.$router.push('/home')
     } else {
       this.$router.push('/login')
     }
@@ -23,6 +24,10 @@ export default {
 
 <style scoped lang="less">
   .main {
+    height: 100%;
+      width: 100%;
+      position:fixed;
+      background-color: #2b2b2b;
   }
 
 </style>
