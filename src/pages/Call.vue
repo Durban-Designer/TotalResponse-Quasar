@@ -6,13 +6,13 @@
     </div>
     <div v-bind:class="callIcons">
       <!-- Fire Tokens -->
-      <div v-bind:class="fireTokenLogic" v-on:click="fireToken"><h2>Fire</h2><div class="fireIcon"></div></div>
+      <div v-bind:class="fireTokenLogic" v-on:click="fireToken"><div class="fireIcon"></div></div>
       <div v-bind:class="buildingFireTokenLogic" v-on:click="buildingFire">Building Fire</div>
       <div v-bind:class="explosionTokenLogic" v-on:click="explosion">Explosion</div>
       <div v-bind:class="forestFireTokenLogic" v-on:click="forestFire">Forest Fire</div>
       <div v-bind:class="otherFireTokenLogic" v-on:click="otherFire">Other</div>
       <!-- Police Tokens -->
-      <div v-bind:class="policeTokenLogic" v-on:click="policeToken"><h2>Police</h2><div class="policeIcon"></div></div>
+      <div v-bind:class="policeTokenLogic" v-on:click="policeToken"><div class="policeIcon"></div></div>
       <div v-bind:class="kidnappingTokenLogic" v-on:click="kidnapping">Kidnapping</div>
       <div v-bind:class="assaultTokenLogic" v-on:click="assault">Assault</div>
       <div v-bind:class="massShootingTokenLogic" v-on:click="massShooting">Mass Shooting</div>
@@ -20,13 +20,13 @@
       <div v-bind:class="rapeTokenLogic" v-on:click="rape">Rape</div>
       <div v-bind:class="otherPoliceTokenLogic" v-on:click="otherPolice">Other</div>
       <!-- Medical Tokens -->
-      <div v-bind:class="medicalTokenLogic" v-on:click="medicalToken"><h2>Medical</h2><div class="medicalIcon"></div></div>
+      <div v-bind:class="medicalTokenLogic" v-on:click="medicalToken"><div class="medicalIcon"></div></div>
       <div v-bind:class="heartAttackTokenLogic" v-on:click="heartAttack">Heart Attack</div>
       <div v-bind:class="gunshotTokenLogic" v-on:click="gunshot">Gunshot</div>
       <div v-bind:class="massCasualtyTokenLogic" v-on:click="massCasualty">Mass Casualty</div>
       <div v-bind:class="otherMedicalTokenLogic" v-on:click="otherMedical">Other</div>
       <!-- Utility Tokens -->
-      <div v-bind:class="utilityTokenLogic" v-on:click="utilityToken"><h2>Utility</h2><div class="utilityIcon"></div></div>
+      <div v-bind:class="utilityTokenLogic" v-on:click="utilityToken"><div class="utilityIcon"></div></div>
       <div v-bind:class="gasLeakTokenLogic" v-on:click="gasLeak">Gas Leak</div>
       <div v-bind:class="electricalTokenLogic" v-on:click="electrical">Electrical</div>
       <div v-bind:class="waterTokenLogic" v-on:click="water">Water</div>
@@ -454,12 +454,12 @@ export default {
   @tokenBackground: #999;
 
   .main {
+    position:fixed;
+    background-color: #414447;
     margin-bottom: 100px;
     text-align: center;
     width: 100%;
-    display: grid;
-    grid-template-columns: 10px 1fr 10px;
-    grid-template-rows: 100px 140px 4px 200px;
+    height: 100%;
     grid-gap: 0;
   }
 
@@ -497,30 +497,20 @@ export default {
 
   .fireToken {
     grid-column: 1;
-    grid-row: 1;
-    margin: 10px;
-    width: 140px;
-    height: 60px;
-    border-radius: 8px;
-    background-color: @tokenBackground;
-    display: grid;
-    grid-template-columns: 80px 60px;
+    grid-row: 2;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
   }
-
-  .fireToken h2 {
-    font-size: 1em;
-    width: 80px;
-    line-height: 60px;
-    margin: 0;
-    grid-column: 1;
-  }
-
   .fireIcon {
-    background-image: url('../assets/fireIcon.png');
+    background-image: url('../assets/fireIcon.svg');
     background-repeat: no-repeat;
-    width: 60px;
-    height: 60px;
-    grid-column: 2;
+    background-position: center;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
   }
 
   .buildingFireToken {
@@ -568,32 +558,21 @@ export default {
   }
 
   .policeToken {
-    grid-column: 2;
-    grid-row: 1;
-    margin: 10px;
-    width: 140px;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 8px;
-    display: grid;
-    grid-template-columns: 80px 60px;
-    background-color: @tokenBackground;
-  }
-
-  .policeToken h2 {
-    font-size: 1em;
-    width: 80px;
-    line-height: 60px;
-    margin: 0;
-    grid-column: 1;
+    grid-column: 3;
+    grid-row: 2;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
   }
 
   .policeIcon {
-    background: url('../assets/policeIcon.png');
-    background-repeat: no-repeat;
-    width: 60px;
-    height: 60px;
-    grid-column: 2;
+    background: url('../assets/policeIcon.svg');
+    background-position: center;
+    background-size: contain;
+    width: 90px;
+    height: 90px;
   }
 
   .kidnappingToken {
@@ -663,32 +642,21 @@ export default {
   }
 
   .medicalToken {
-    grid-column: 1;
-    grid-row: 2;
-    margin: 10px;
-    width: 140px;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 8px;
-    display: grid;
-    grid-template-columns: 80px 60px;
-    background-color: @tokenBackground;
-  }
-
-  .medicalToken h2 {
-    font-size: 1em;
-    width: 80px;
-    line-height: 60px;
-    margin: 0;
-    grid-column: 1;
-  }
-
-  .medicalIcon {
-    background: url('../assets/medicalIcon.png');
-    background-repeat: no-repeat;
-    width: 60px;
-    height: 60px;
     grid-column: 2;
+    grid-row: 1;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+  }
+  .medicalIcon {
+    background: url('../assets/medicalIcon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
   }
 
   .heartAttackToken {
@@ -737,31 +705,20 @@ export default {
 
   .utilityToken {
     grid-column: 2;
-    grid-row: 2;
-    margin: 10px;
-    width: 140px;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 8px;
-    display: grid;
-    grid-template-columns: 80px 60px;
-    background-color: @tokenBackground;
+    grid-row: 3;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
   }
-
-  .utilityToken h2 {
-    font-size: 1em;
-    width: 80px;
-    line-height: 60px;
-    margin: 0;
-    grid-column: 1;
-  }
-
   .utilityIcon {
-    background: url('../assets/utilityIcon.png');
+    background: url('../assets/utilityIcon.svg');
     background-repeat: no-repeat;
-    width: 60px;
-    height: 60px;
-    grid-column: 2;
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    height: 100%;
   }
 
   .gasLeakToken {
@@ -859,11 +816,15 @@ export default {
   }
 
   .callBox {
+    margin-left: 5%;
+    margin-top: 200px;
     display: grid;
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row: 2;
-    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, 100px);
+    grid-row-gap: 5%;
+    grid-column-gap: 5%;
+    width: 90%;
+    height: 100%;
   }
 
   .currentLocation {

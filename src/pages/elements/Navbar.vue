@@ -209,8 +209,7 @@ document.addEventListener('touchstart', function () {}, true)
 
   @keyframes activateNavtiles {
     0% {margin: 10px 0;}
-    40% {margin: 22px 0;}
-    80% {margin: 12px 0;}
+    95% {margin: 20px 0;}
     100% {margin: 12px 0;}
   }
 
@@ -245,21 +244,21 @@ document.addEventListener('touchstart', function () {}, true)
 
   .navtileAnimation {
     animation-name: activateNavtiles;
-    animation-duration: 1.5s;
+    animation-duration: .5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
   }
 
   .navpaneAnimationExit {
     animation-name: deactivateNav;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
   }
 
   .navtileAnimationExit {
     animation-name: deactivateNavtiles;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
   }

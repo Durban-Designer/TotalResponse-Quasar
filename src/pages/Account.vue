@@ -288,12 +288,9 @@ export default {
   @bodyText: "LiberationSans";
 
   .main {
-    margin-top: 10px;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0 500px 50px 30px;
-    overflow: hidden;
+    position:fixed;
+    background-color: #414447;
   }
 
   .hidden {
@@ -301,23 +298,14 @@ export default {
   }
 
   .accountBox {
-    grid-column: 1;
-    grid-row: 2;
+    padding-top: 100px;
     text-align: center;
-    box-shadow: 2px 6px #d1d1d1;
-    border-radius: 24px;
     overflow: hidden;
-    background: @backgroundColor;
-    background-image: -webkit-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -moz-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -ms-linear-gradient(top, @lightTR, @darkTR);
-    background-image: -o-linear-gradient(top, @lightTR, @darkTR);
-    background-image: linear-gradient(to bottom, @lightTR, @darkTR);
-    height: 500px;
+    height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 400px 10px 100px 10px;
+    position: fixed;
+    background-color: #414447;
   }
 
   .accountInfo {
@@ -325,31 +313,27 @@ export default {
     display: grid;
     grid-gap: 6px;
     grid-template-columns: 20px repeat(8, 1fr) 20px;
-    grid-template-rows: 10px 40px repeat(4, 60px) 20px 60px;
+    grid-template-rows: repeat(9, 40px);
   }
 
   .accountInfo h1 {
-    font-family: @boldText;
     color: #fff;
-    text-shadow: 2px 1px 2px #515151;
-    -webkit-background-clip: text;
-       -moz-background-clip: text;
-            background-clip: text;
     grid-row: 1;
     grid-column-start: 2;
     grid-column-end: 10;
-    font-size: @baseFontSize + 1.2em;
+    font-size: 2em;
+    font-weight: 400;
   }
 
   .accountInfo div {
-    font-family: @bodyText;
-    font-size: @baseFontSize;
-    color: @textColor;
+    color: white;
     text-align: left;
     background: transparent;
-    margin-top: 36px;
+    line-height: 30px;
+    padding-left: 3%;
+    height: 30px;
     border: none;
-    border-bottom: 1px solid #fff;
+    border: 1px solid #fff;
   }
 
   .salutation {
@@ -389,11 +373,12 @@ export default {
   }
 
   .edit {
-    font-family: @boldText;
-    grid-column-start: 2;
+    grid-column-start: 9;
     grid-column-end: 10;
-    grid-row: 8;
-    font-size: @baseFontSize + 1em;
+    grid-row: 7;
+    font-size: 1.5em;
+    height: 30px;
+    text-align: center;
   }
 
   .paymentInfo {
@@ -401,95 +386,91 @@ export default {
     display: grid;
     grid-gap: 6px;
     grid-template-columns: 20px repeat(6, 1fr) 20px;
-    grid-template-rows: 10px 40px repeat(4, 60px) 20px 60px;
+    grid-template-rows: repeat(9, 40px);
   }
 
   .paymentInfo h1 {
-    font-family: @boldText;
+    font-size: 2em;
+    font-weight: 400;
     color: #fff;
-    text-shadow: 2px 1px 2px #515151;
-    -webkit-background-clip: text;
-       -moz-background-clip: text;
-            background-clip: text;
-    grid-row: 2;
+    grid-row: 1;
     grid-column-start: 2;
     grid-column-end: 8;
   }
 
   .paymentInfo div {
-    font-family: @bodyText;
-    font-size: @baseFontSize;
-    color: @textColor;
+    color: white;
     text-align: left;
     background: transparent;
-    margin-top: 36px;
+    line-height: 30px;
+    padding-left: 3%;
+    height: 30px;
     border: none;
-    border-bottom: 1px solid #fff;
+    border: 1px solid #fff;
   }
 
   .card {
     grid-column-start: 2;
-    grid-column-end: 5;
+    grid-column-end: 8;
     grid-row: 3;
-    font-size: 1.2em;
+    font-size: 1em;
   }
 
   .expiration {
-    grid-column-start: 5;
-    grid-column-end: 6;
-    grid-row: 3;
-    font-size: 1.2em;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row: 4;
+    font-size: 1em;
   }
 
   .cvv {
     grid-column-start: 6;
     grid-column-end: 8;
-    grid-row: 3;
-    font-size: 1.2em;
+    grid-row: 4;
+    font-size: 1em;
   }
 
   .addressOne {
     grid-column-start: 2;
     grid-column-end: 8;
-    grid-row: 4;
-    font-size: 1.2em;
+    grid-row: 5;
+    font-size: 1em;
   }
 
   .addressTwo {
     grid-column-start: 2;
-    grid-column-end: 6;
-    grid-row: 5;
-    font-size: 1.2em;
+    grid-column-end: 8;
+    grid-row: 6;
+    font-size: 1em;
   }
 
   .city {
     grid-column-start: 2;
     grid-column-end: 5;
-    grid-row: 6;
-    font-size: 1.2em;
+    grid-row: 7;
+    font-size: 1em;
   }
 
   .state {
     grid-column-start: 6;
     grid-column-end: 8;
-    grid-row: 5;
-    font-size: 1.2em;
+    grid-row: 7;
+    font-size: 1em;
   }
 
   .zipCode {
-    grid-column-start: 5;
-    grid-column-end: 8;
-    grid-row: 6;
-    font-size: 1.2em;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row: 8;
+    font-size: 1em;
   }
 
   .editPayment {
-    grid-column-start: 2;
+    grid-column-start: 7;
     grid-column-end: 8;
-    grid-row: 7;
-    height: 60px;
-    margin-top: 20px;
-    font-size: 2em;
+    grid-row: 8;
+    height: 30px;
+    font-size: 1.5em;
   }
 
   .medicalInfo {
@@ -497,16 +478,12 @@ export default {
     display: grid;
     grid-gap: 6px;
     grid-template-columns: 20px repeat(6, 1fr) 20px;
-    grid-template-rows: 10px 40px repeat(4, 60px) 20px 60px;
+    grid-template-rows: repeat(9, 40px);
   }
 
   .medicalInfo h1 {
-    font-family: @boldText;
+    font-weight: 400;
     color: #fff;
-    text-shadow: 2px 1px 2px #515151;
-    -webkit-background-clip: text;
-       -moz-background-clip: text;
-            background-clip: text;
     grid-row: 1;
     grid-column-start: 2;
     grid-column-end: 8;
@@ -514,73 +491,71 @@ export default {
   }
 
   .medicalInfo div{
-    font-family: @bodyText;
-    font-size: @baseFontSize;
-    color: @textColor;
+    color: white;
     text-align: left;
     background: transparent;
-    margin-top: 36px;
+    line-height: 30px;
+    padding-left: 3%;
     border: none;
-    border-bottom: 1px solid #fff;
+    border: 1px solid #fff;
   }
 
   .blood {
     grid-column-start: 2;
     grid-column-end: 5;
     grid-row: 3;
-    font-size: 1.4em;
+    font-size: 1em;
   }
 
   .allergies {
     grid-column-start: 2;
     grid-column-end: 8;
     grid-row: 4;
-    font-size: 1.4em;
+    font-size: 1em;
   }
 
   .medical {
     grid-column-start: 2;
     grid-column-end: 8;
-    grid-row: 5;
-    font-size: 1.4em;
+    grid-row-start: 5;
+    grid-row-end: 7;
+    font-size: 1em;
+    height: 100px;
   }
 
   .editMedical {
-    grid-column-start: 2;
+    grid-column-start: 7;
     grid-column-end: 8;
     grid-row: 7;
-    height: 60px;
+    height: 30px;
     margin-top: 20px;
-    font-size: 2em;
+    font-size: 1.5em;
   }
 
   .accountInfoEdit {
     grid-row: 1;
     display: grid;
     grid-gap: 6px;
-    grid-template-columns: 20px repeat(8, 1fr) 20px;
-    grid-template-rows: 10px 40px repeat(4, 60px);
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(9, 40px);
   }
 
   .accountInfoEdit input {
-    color: @textColor;
+    color: grey;
     border: none !important;
-    border-bottom: 1px solid @textColor !important;
-    background: transparent;
+    border: 1px solid @textColor !important;
+    background: white;
     margin-top: 36px;
+    height: 30px;
   }
 
   .accountInfoEdit h1 {
-    font-family: @boldText;
     color: #fff;
-    text-shadow: 2px 1px 2px #515151;
-    -webkit-background-clip: text;
-       -moz-background-clip: text;
-            background-clip: text;
     grid-row: 1;
-    grid-column-start: 2;
-    grid-column-end: 10;
+    grid-column-start: 1;
+    grid-column-end: 11;
     font-size: 2em;
+    font-weight: 400;
   }
 
   .userNameEdit {
@@ -593,13 +568,11 @@ export default {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row: 3;
-    color: @textColor;
-    background: transparent;
+    color: grey;
+    background: white;
     margin-top: 36px;
-    border: 1px solid @textColor;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    border: 1px solid white;
+    height: 30px;
   }
 
   .firstNameEdit {
@@ -638,28 +611,26 @@ export default {
     grid-row: 1;
     display: grid;
     grid-gap: 6px;
-    grid-template-columns: 20px repeat(8, 1fr) 20px;
-    grid-template-rows: 10px 40px repeat(6, 50px);
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(9, 40px);
   }
 
   .paymentInfoEdit input {
+    color: grey;
     border: none !important;
-    border-bottom: 1px solid @textColor !important;
-    background: transparent;
+    border: 1px solid @textColor !important;
+    background: white;
     margin-top: 36px;
+    height: 30px;
   }
 
   .paymentInfoEdit h1 {
-    font-family: @boldText;
     color: #fff;
-    text-shadow: 2px 1px 2px #515151;
-    -webkit-background-clip: text;
-       -moz-background-clip: text;
-            background-clip: text;
     grid-row: 1;
-    grid-column-start: 2;
-    grid-column-end: 10;
-    font-size: @baseFontSize + .8em;
+    grid-column-start: 1;
+    grid-column-end: 11;
+    font-size: 2em;
+    font-weight: 400;
   }
 
   .cardEdit {
@@ -702,12 +673,10 @@ export default {
     grid-column-start: 5;
     grid-column-end: 7;
     grid-row: 6;
-    background: transparent;
-    margin-top: 34px;
+    background: white;
+    height: 30px;
+    margin-top: 36px;
     border: 1px solid @textColor;
-    border-top: none;
-    border-left: none;
-    border-right: none;
     color: @textColor;
   }
 
@@ -718,82 +687,62 @@ export default {
   }
 
   .planEdit {
-    grid-column-start:6;
-    grid-column-end: 10;
+    grid-column-start: 2;
+    grid-column-end: 5;
     grid-row: 7;
+    height: 30px;
     margin-top: 34px;
-    background: transparent;
-    border: 1px solid @textColor;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    color: @textColor;
+    background: white;
+    border: 1px solid white;
+    color: grey;
   }
 
   .paymentInfoEdit h2 {
-    grid-column-start: 2;
-    grid-column-end: 6;
+    grid-column-start: 7;
+    grid-column-end: 10;
     grid-row: 7;
-    background: @backgroundColor;
-    border-radius: 10px;
-    border-color: @secondaryColor;
-    border: 2px;
-    margin: 0;
-    padding-top: 10px;
-    border-style: ridge;
-    color: @textColor;
-    font-size: 1.4em;
+    margin-top: 40px;
+    height: 30px;
+    color: white;
+    font-size: 1.2em;
   }
 
   .paymentNextEdit {
-    grid-column-start: 2;
+    grid-column-start: 8;
     grid-column-end: 10;
-    grid-row-start: 8;
-    grid-row-end: 10;
-    font-size: 2.4em;
+    grid-row: 9;
+    font-size: 1.5em;
   }
 
   .medicalInfoEdit {
     grid-row: 1;
     display: grid;
     grid-gap: 6px;
-    grid-template-columns: 20px repeat(8, 1fr) 20px;
-    grid-template-rows: 10px 40px 10px repeat(5, 50px) 60px;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(9, 40px);
   }
 
   .medicalInfoEdit h1 {
-    font-family: @boldText;
     color: #fff;
-    text-shadow: 2px 1px 2px #515151;
-    -webkit-background-clip: text;
-       -moz-background-clip: text;
-            background-clip: text;
     grid-row: 1;
-    grid-column-start: 2;
-    grid-column-end: 10;
-    font-size: @baseFontSize + 1em;
+    grid-column-start: 1;
+    grid-column-end: 11;
+    font-size: 2em;
+    font-weight: 400;
   }
 
   .bloodEdit {
-    text-align: left;
-    grid-row: 4;
     grid-column-start: 2;
-    grid-column-end: 6;
-    color: @textColor;
-    background: transparent;
-    margin-top: 30px;
+    grid-column-end: 5;
+    grid-row: 3;
     font-size: 1em;
-    font-family: @bodyText;
+    color: white;
+    line-height: 30px;
   }
 
   .medicalInfoEdit textarea {
-    color: @textColor;
-    border: none !important;
-    border: 1px solid @textColor !important;
-    -webkit-border-radius: 10;
-    -moz-border-radius: 10;
-    border-radius: 10px;
-    background: transparent;
+    color: grey;
+    background: white;
   }
 
   ::placeholder {
@@ -803,47 +752,41 @@ export default {
   .bloodTypeEdit {
     grid-column-start: 5;
     grid-column-end: 7;
-    grid-row: 4;
-    color: @textColor;
-    background: transparent;
-    margin-top: 30px;
-    border: 1px solid @textColor;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    grid-row: 3;
+    color: grey;
+    background: white;
+    height: 30px;
+    border: 1px solid white;
   }
 
   .allergiesEdit {
     grid-column-start: 2;
     grid-column-end: 10;
-    grid-row-start: 5;
-    grid-row-end: 7;
+    grid-row-start: 4;
+    grid-row-end: 6;
   }
 
   .medicalEdit {
     grid-column-start: 2;
     grid-column-end: 10;
-    grid-row-start: 7;
-    grid-row-end: 9;
+    grid-row-start: 6;
+    grid-row-end: 8;
   }
 
   .confirmButton {
-    grid-column-start: 2;
+    grid-column-start: 4;
     grid-column-end: 10;
-    grid-row: 9;
-    font-size: 1.72em;
+    grid-row: 8;
+    font-size: 1.5em;
+    text-align: right;
   }
 
   .tabs {
-    font-family: @sideText;
-    grid-column: 1;
-    grid-row: 3;
-    text-align: left;
-    text-shadow: 2px 3px #000;
+    text-align: center;
     width: 100%;
-    line-height: 100px;
-    font-size: 2.2em;
+    font-size: 2em;
     display: grid;
+    height: 80px;
     grid-template-columns: 1fr 1fr;
   }
 
@@ -857,49 +800,21 @@ export default {
 
   .accountTab {
     background: transparent;
-    color: #6f89c2;
-    width: 160px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-  }
-
-  .accountIcon {
-    grid-column: 2;
-    background-image: url("../assets/Person.svg");
-    background-repeat: no-repeat;
-    margin-top: 14px;
+    color: white;
+    width: 100%;
+    text-align: center;
   }
 
   .paymentTab {
     background: transparent;
-    color: #7db64c;
-    width: 160px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    color: white;
+    width: 100%;
   }
-
-  .paymentIcon {
-    grid-column: 2;
-    background-image: url("../assets/$$$.svg");
-    background-repeat: no-repeat;
-    margin-top: 14px;
-  }
-
   .medicalTab {
     background: transparent;
-    color: #f25767;
-    width: 160px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    color: white;
+    width: 100%;
   }
-
-  .medicalIcon {
-    grid-column: 2;
-    background-image: url("../assets/Stethescope.svg");
-    background-repeat: no-repeat;
-    margin-top: 14px;
-  }
-
   .termsLink {
     color: #4c32cf;
     text-decoration: underline;
@@ -912,26 +827,12 @@ export default {
   }
 
   button {
-    background: #0c2069;
-    background-image: -webkit-linear-gradient(top, @darkTR, @lightTR);
-    background-image: -moz-linear-gradient(top, @darkTR, @lightTR);
-    background-image: -ms-linear-gradient(top, @darkTR, @lightTR);
-    background-image: -o-linear-gradient(top, @darkTR, @lightTR);
-    background-image: linear-gradient(to bottom, @darkTR, @lightTR);
-    -webkit-border-radius: 10;
-    -moz-border-radius: 10;
-    border-radius: 10px;
-    font-family: "Candara";
-    font-weight: bold;
-    color: #ffffff;
-    font-size: 32px;
-    padding: 10px 30px 10px 30px;
-    border: 2px solid #9fb0d6;
+    color: #fff;
+    font-size: 1em;
     text-decoration: none;
 }
 
-button:hover {
-  background: #3f62ad;
+button:active {
   text-decoration: none;
 }
 
