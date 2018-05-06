@@ -600,11 +600,11 @@ export default {
   }
 
   .nextEdit {
-    grid-column-start: 2;
+    grid-column-start: 8;
     grid-column-end: 10;
     grid-row: 7;
     margin-top: 20px;
-    font-size: 2.4em;
+    font-size: 1.5em;
   }
 
   .paymentInfoEdit {
@@ -830,6 +830,8 @@ export default {
     color: #fff;
     font-size: 1em;
     text-decoration: none;
+    background: transparent;
+    border: none;
 }
 
 button:active {
