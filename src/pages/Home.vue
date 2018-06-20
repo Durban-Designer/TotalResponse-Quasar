@@ -1,22 +1,21 @@
 <template>
   <div class="main">
-    <h1>Home</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home',
+  name: '/',
   created () {
     if (this.logged === true) {
-      this.$router.push('/home')
+      this.$router.push('/')
     } else {
       this.$router.push('/login')
     }
   },
   data: function () {
     return {
-      logged: false
+      logged: true
     }
   }
 }
@@ -27,7 +26,9 @@ export default {
     height: 100%;
       width: 100%;
       position:fixed;
-      background-color: #2b2b2b;
+      background-image: url('../assets/noise.png');
   }
-
+h1 {
+  color: white;
+}
 </style>

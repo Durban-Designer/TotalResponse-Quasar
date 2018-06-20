@@ -1,8 +1,9 @@
 <template>
   <div class="main">
+    <h2>Note! Once you specify your emergency type, TR will start a call to the authorities and immediately send your location.</h2>
     <audio id="audio" autoplay></audio>
     <div v-bind:class="connecting">
-      <h3>Connecting...</h3>
+      <h3>Sending Location...</h3>
     </div>
     <div v-bind:class="callIcons">
       <h1>What's Your Emergency?</h1>
@@ -456,7 +457,7 @@ export default {
 
   .main {
     position:fixed;
-    background-color: #2b2b2b;
+    background-image: url('../assets/noise.png');
     margin-bottom: 100px;
     text-align: center;
     width: 100%;
@@ -478,13 +479,17 @@ export default {
     margin-left: -5%;
     line-height: 30px;
   }
+  h2 {
+    margin-top: 100px;
+    color: white;
+    font-size: 1em;
+    width: 90%;
+    margin-left: 5%;
+  }
   .connect {
-    font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
     font-size: 2.4em;
     margin: 0;
-    font-style: oblique;
-    color: #EF1931;
-    text-shadow: 4px 4px 5px grey;
+    color: white;
     grid-column-start: 2;
     grid-column-end: 8;
     grid-row: 1;
@@ -511,8 +516,7 @@ export default {
     padding: 5px;
     width: 100px;
     height: 100px;
-    background-color: white;
-    border: 4px solid #c22227;
+    border: 4px solid #e96025;
     border-radius: 50%;
   }
   .fireIcon {
@@ -529,11 +533,10 @@ export default {
     grid-row: 1;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #c22227;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    margin-top: 35px;
+    font-weight: bold;
+    color: #e96025;
+    font-size: 1.5em;
     background-color: transparent;
   }
 
@@ -542,11 +545,10 @@ export default {
     grid-row: 2;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #c22227;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    margin-top: 35px;
+    font-weight: bold;
+    color: #e96025;
+    font-size: 1.5em;
     background-color: transparent;
   }
 
@@ -555,11 +557,10 @@ export default {
     grid-row: 2;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #c22227;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    margin-top: 35px;
+    font-weight: bold;
+    color: #e96025;
+    font-size: 1.5em;
     background-color: transparent;
   }
 
@@ -568,11 +569,10 @@ export default {
     grid-row: 3;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #c22227;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    margin-top: 35px;
+    font-weight: bold;
+    color: #e96025;
+    font-size: 1.5em;
     background-color: transparent;
   }
 
@@ -582,7 +582,6 @@ export default {
     padding: 2%;
     width: 100px;
     height: 100px;
-    background-color: white;
     border: 4px solid #0072ff;
     border-radius: 50%;
   }
@@ -591,6 +590,7 @@ export default {
     background: url('../assets/policeIcon.svg');
     background-position: center;
     background-size: contain;
+    margin-top: 2px;
     width: 89px;
     height: 89px;
   }
@@ -600,11 +600,10 @@ export default {
     grid-row: 2;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #0072ff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    margin-top: 35px;
+    font-weight: bold;
+    color: #0072ff;
+    font-size: 1.2em;
     background-color: transparent;
   }
 
@@ -613,11 +612,10 @@ export default {
     grid-row: 1;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #0072ff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    margin-top: 35px;
+    font-weight: bold;
+    color: #0072ff;
+    font-size: 1.2em;
     background-color: transparent;
   }
 
@@ -625,11 +623,10 @@ export default {
     grid-column: 1;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #0072ff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    margin-top: 35px;
+    font-weight: bold;
+    color: #0072ff;
+    font-size: 1.2em;
     background-color: transparent;
   }
 
@@ -638,11 +635,10 @@ export default {
     grid-row: 1;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #0072ff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    margin-top: 35px;
+    font-weight: bold;
+    color: #0072ff;
+    font-size: 1.2em;
     background-color: transparent;
   }
 
@@ -651,11 +647,10 @@ export default {
     grid-row: 3;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #0072ff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    margin-top: 35px;
+    font-weight: bold;
+    color: #0072ff;
+    font-size: 1.2em;
     background-color: transparent;
   }
 
@@ -664,11 +659,10 @@ export default {
     grid-row: 3;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #0072ff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    margin-top: 35px;
+    font-weight: bold;
+    color: #0072ff;
+    font-size: 1.2em;
     background-color: transparent;
   }
 
@@ -678,8 +672,7 @@ export default {
     padding: 5px;
     width: 100px;
     height: 100px;
-    background-color: white;
-    border: 4px solid green;
+    border: 4px solid #67ba52;
     border-radius: 50%;
   }
   .medicalIcon {
@@ -696,12 +689,11 @@ export default {
     grid-row: 1;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid green;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
+    color: #67ba52;
+    font-size: 1.5em;
+    font-weight: bold;
     background-color: transparent;
+    margin-top: 35px;
   }
 
   .gunshotToken {
@@ -709,12 +701,10 @@ export default {
     grid-row: 2;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid green;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
-    background-color: transparent;
+    color: #67ba52;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 35px;
   }
 
   .massCasualtyToken {
@@ -722,12 +712,10 @@ export default {
     grid-row: 2;
     width: 100%;
     height: 100%;
-    padding-top: 25px;
-    border: 5px solid green;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
-    background-color: transparent;
+    color: #67ba52;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 25px;
   }
 
   .otherMedicalToken {
@@ -735,12 +723,10 @@ export default {
     grid-row: 3;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid green;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
-    background-color: transparent;
+    color: #67ba52;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 35px;
   }
 
   .utilityToken {
@@ -749,8 +735,7 @@ export default {
     padding: 5px;
     width: 100px;
     height: 100px;
-    background-color: white;
-    border: 4px solid #c16bff;
+    border: 4px solid #eaef29;
     border-radius: 50%;
   }
   .utilityIcon {
@@ -763,29 +748,25 @@ export default {
   }
 
   .gasLeakToken {
-    grid-column: 2;
-    grid-row: 1;
-    width: 100%;
-    height: 100%;
-    line-height: 90px;
-    border: 5px solid #c16bff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
-    background-color: transparent;
-  }
-
-  .electricalToken {
     grid-column: 3;
     grid-row: 2;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #c16bff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
-    background-color: transparent;
+    color: #eaef29;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 35px;
+  }
+
+  .electricalToken {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    color: #eaef29;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 35px;
   }
 
   .waterToken {
@@ -793,12 +774,10 @@ export default {
     grid-row: 2;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #c16bff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
-    background-color: transparent;
+    color: #eaef29;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 35px;
   }
 
   .otherUtilityToken {
@@ -806,12 +785,10 @@ export default {
     grid-row: 3;
     width: 100%;
     height: 100%;
-    line-height: 90px;
-    border: 5px solid #c16bff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1em;
-    background-color: transparent;
+    color: #eaef29;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 35px;
   }
 
   .callingIcons {
@@ -821,52 +798,57 @@ export default {
   }
 
   .muteIconOff {
-    grid-column: 2;
-    width: 50px;
-    height: 50px;
-    margin-top: 40px;
+    grid-column: 1;
+    width: 100%;
+    height: 100%;
     background-image: url('../assets/muteOff.png');
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 
   .muteIconOn {
-    grid-column: 2;
-    width: 50px;
-    height: 50px;
-    margin-top: 40px;
+    grid-column: 1;
+    width: 100%;
+    height: 100%;
     background-image: url('../assets/muteOn.png');
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 
   .hangUpIcon {
-    grid-column: 3;
-    width: 100px;
-    height: 100px;
+    grid-column: 2;
+    width: 100%;
+    height: 100%;
     background-image: url('../assets/hangUpIcon.png');
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 
   .speakerIconOff {
-    grid-column: 4;
-    width: 50px;
-    height: 50px;
-    margin-top: 40px;
+    grid-column: 3;
+    width: 100%;
+    height: 100%;
     background-image: url('../assets/speakerOff.png');
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 
   .speakerIconOn {
-    grid-column: 4;
-    width: 50px;
-    height: 50px;
-    margin-top: 40px;
+    grid-column: 3;
+    width: 100%;
+    height: 100%;
     background-image: url('../assets/speakerOn.png');
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 
   .callBox {
     margin-left: 5%;
-    margin-top: 200px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(3, 100px);
@@ -874,6 +856,7 @@ export default {
     grid-column-gap: 5%;
     width: 90%;
     height: 100%;
+    margin-top: 30px;
   }
 
   .currentLocation {

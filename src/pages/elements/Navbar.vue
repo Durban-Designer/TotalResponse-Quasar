@@ -1,9 +1,6 @@
 <template>
   <div id="Navbar" class="nav">
     <h3 v-on:click="homeNav">Total Response</h3>
-    <div v-on:click="navToggle" class="navButton">
-      <center><div v-bind:class="navbutton" class="navButtonIcon"></div></center>
-    </div>
     <div v-bind:class="navpane" class="navpane">
       <center>
         <div v-on:click="loginNav" v-bind:class="login">Login</div>
@@ -81,7 +78,7 @@ export default {
       if (this.loggedNav === false) {
         this.$router.push('/login')
       } else {
-        this.$router.push('/home')
+        this.$router.push('/')
       }
       this.isToggled = false
       x = false
@@ -151,8 +148,9 @@ document.addEventListener('touchstart', function () {}, true)
     position: fixed;
     z-index: 10;
     color: white;
-    margin-left: 2%;
-    font-size: 1.5em;
+    margin-left: 5%;
+    font-size: 2em;
+    font-weight: bold;
   }
   .navButton {
     grid-column: 6;
