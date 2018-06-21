@@ -15,7 +15,7 @@
       <div v-bind:class="otherFireTokenLogic" v-on:click="otherFire">Other</div>
       <!-- Police Tokens -->
       <div v-bind:class="policeTokenLogic" v-on:click="policeToken"><div class="policeIcon"></div></div>
-      <div v-bind:class="kidnappingTokenLogic" v-on:click="kidnapping">Kidnapping</div>
+      <div v-bind:class="kidnappingTokenLogic" v-on:click="kidnapping">Abduction</div>
       <div v-bind:class="assaultTokenLogic" v-on:click="assault">Assault</div>
       <div v-bind:class="massShootingTokenLogic" v-on:click="massShooting">Shooting</div>
       <div v-bind:class="robberyTokenLogic" v-on:click="robbery">Robbery</div>
@@ -470,7 +470,8 @@ export default {
     padding:0;
   }
   h1 {
-    font-size: 1.4em;
+    font-size: 1.2em;
+    font-weight: 500;
     color: white;
     text-align: center;
     grid-column: 2;
@@ -480,9 +481,10 @@ export default {
     line-height: 30px;
   }
   h2 {
-    margin-top: 100px;
+    margin-top: 10px;
     color: white;
     font-size: 1em;
+    font-weight: 500;
     width: 90%;
     margin-left: 5%;
   }
@@ -533,11 +535,13 @@ export default {
     grid-row: 1;
     width: 100%;
     height: 100%;
-    margin-top: 35px;
+    padding-top: 30px;
     font-weight: bold;
     color: #e96025;
-    font-size: 1.5em;
+    font-size: 1em;
     background-color: transparent;
+    border: 4px solid #e96025;
+    border-radius: 50%;
   }
 
   .explosionToken {
@@ -545,11 +549,13 @@ export default {
     grid-row: 2;
     width: 100%;
     height: 100%;
-    margin-top: 35px;
+    padding-top: 35px;
     font-weight: bold;
     color: #e96025;
-    font-size: 1.5em;
+    font-size: 1em;
     background-color: transparent;
+    border: 4px solid #e96025;
+    border-radius: 50%;
   }
 
   .forestFireToken {
@@ -557,11 +563,13 @@ export default {
     grid-row: 2;
     width: 100%;
     height: 100%;
-    margin-top: 35px;
+    padding-top: 35px;
     font-weight: bold;
     color: #e96025;
-    font-size: 1.5em;
+    font-size: 1em;
     background-color: transparent;
+    border: 4px solid #e96025;
+    border-radius: 50%;
   }
 
   .otherFireToken {
@@ -569,11 +577,13 @@ export default {
     grid-row: 3;
     width: 100%;
     height: 100%;
-    margin-top: 35px;
+    padding-top: 35px;
     font-weight: bold;
     color: #e96025;
-    font-size: 1.5em;
+    font-size: 1.3em;
     background-color: transparent;
+    border: 4px solid #e96025;
+    border-radius: 50%;
   }
 
   .policeToken {
@@ -600,11 +610,13 @@ export default {
     grid-row: 2;
     width: 100%;
     height: 100%;
-    margin-top: 35px;
+    padding-top: 35px;
     font-weight: bold;
     color: #0072ff;
-    font-size: 1.2em;
+    font-size: 1em;
     background-color: transparent;
+    border: 4px solid #0072ff;
+    border-radius: 50%;
   }
 
   .assaultToken {
@@ -612,22 +624,27 @@ export default {
     grid-row: 1;
     width: 100%;
     height: 100%;
-    margin-top: 35px;
+    padding-top: 35px;
     font-weight: bold;
     color: #0072ff;
     font-size: 1.2em;
     background-color: transparent;
+    border: 4px solid #0072ff;
+    border-radius: 50%;
   }
 
   .massShootingToken {
     grid-column: 1;
     width: 100%;
     height: 100%;
-    margin-top: 35px;
+    padding-top: 35px;
     font-weight: bold;
     color: #0072ff;
     font-size: 1.2em;
     background-color: transparent;
+    border: 4px solid #0072ff;
+    border-radius: 50%;
+
   }
 
   .robberyToken {
@@ -635,11 +652,13 @@ export default {
     grid-row: 1;
     width: 100%;
     height: 100%;
-    margin-top: 35px;
+    padding-top: 35px;
     font-weight: bold;
     color: #0072ff;
     font-size: 1.2em;
     background-color: transparent;
+    border: 4px solid #0072ff;
+    border-radius: 50%;
   }
 
   .rapeToken {
@@ -647,11 +666,13 @@ export default {
     grid-row: 3;
     width: 100%;
     height: 100%;
-    margin-top: 35px;
+    padding-top: 35px;
     font-weight: bold;
     color: #0072ff;
     font-size: 1.2em;
     background-color: transparent;
+    border: 4px solid #0072ff;
+    border-radius: 50%;
   }
 
   .otherPoliceToken {
@@ -659,11 +680,13 @@ export default {
     grid-row: 3;
     width: 100%;
     height: 100%;
-    margin-top: 35px;
+    padding-top: 35px;
     font-weight: bold;
     color: #0072ff;
     font-size: 1.2em;
     background-color: transparent;
+    border: 4px solid #0072ff;
+    border-radius: 50%;
   }
 
   .medicalToken {
@@ -690,10 +713,12 @@ export default {
     width: 100%;
     height: 100%;
     color: #67ba52;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
     background-color: transparent;
-    margin-top: 35px;
+    border: 4px solid #67ba52;
+    border-radius: 50%;
+    padding-top: 20px;
   }
 
   .gunshotToken {
@@ -702,9 +727,11 @@ export default {
     width: 100%;
     height: 100%;
     color: #67ba52;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
-    margin-top: 35px;
+    border: 4px solid #67ba52;
+    border-radius: 50%;
+    padding-top: 30px;
   }
 
   .massCasualtyToken {
@@ -713,9 +740,11 @@ export default {
     width: 100%;
     height: 100%;
     color: #67ba52;
-    font-size: 1.5em;
+    font-size: 1.1em;
     font-weight: bold;
-    margin-top: 25px;
+    padding-top: 25px;
+    border: 4px solid #67ba52;
+    border-radius: 50%;
   }
 
   .otherMedicalToken {
@@ -724,9 +753,11 @@ export default {
     width: 100%;
     height: 100%;
     color: #67ba52;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
-    margin-top: 35px;
+    border: 4px solid #67ba52;
+    border-radius: 50%;
+    line-height: 90px;
   }
 
   .utilityToken {
@@ -753,9 +784,11 @@ export default {
     width: 100%;
     height: 100%;
     color: #eaef29;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
-    margin-top: 35px;
+    padding-top: 35px;
+    border: 4px solid #eaef29;
+    border-radius: 50%;
   }
 
   .electricalToken {
@@ -764,9 +797,11 @@ export default {
     width: 100%;
     height: 100%;
     color: #eaef29;
-    font-size: 1.5em;
+    font-size: 1.1em;
     font-weight: bold;
-    margin-top: 35px;
+    padding-top: 35px;
+    border: 4px solid #eaef29;
+    border-radius: 50%;
   }
 
   .waterToken {
@@ -775,9 +810,11 @@ export default {
     width: 100%;
     height: 100%;
     color: #eaef29;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
-    margin-top: 35px;
+    padding-top: 35px;
+    border: 4px solid #eaef29;
+    border-radius: 50%;
   }
 
   .otherUtilityToken {
@@ -786,9 +823,11 @@ export default {
     width: 100%;
     height: 100%;
     color: #eaef29;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
-    margin-top: 35px;
+    padding-top: 35px;
+    border: 4px solid #eaef29;
+    border-radius: 50%;
   }
 
   .callingIcons {
@@ -848,12 +887,12 @@ export default {
   }
 
   .callBox {
-    margin-left: 5%;
+    margin-left: .5%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(3, 100px);
     grid-row-gap: 5%;
-    grid-column-gap: 5%;
+    grid-column-gap: 10%;
     width: 90%;
     height: 100%;
     margin-top: 30px;
@@ -883,6 +922,7 @@ export default {
     .callBox {
       grid-column-start: 1;
       grid-column-end: 10;
+      margin-left: 5%;
     }
 }
 

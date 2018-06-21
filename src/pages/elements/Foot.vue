@@ -1,8 +1,8 @@
 <template>
   <div id="Foot" class="main">
-    <button v-on:click="homeNav" v-bind:class="logged, home">Home</button>
-    <button v-on:click="callNav" v-bind:class="logged, call">Call</button>
-    <button v-on:click="accountNav" v-bind:class="logged, acct">Account</button>
+    <button class="home" v-on:click="homeNav" v-bind:class="logged, home"></button>
+    <button class="call" v-on:click="callNav" v-bind:class="logged, call"></button>
+    <button class="account" v-on:click="accountNav" v-bind:class="logged, acct"></button>
   </div>
 </template>
 
@@ -90,6 +90,8 @@ document.addEventListener('touchstart', function () {}, true)
 button {
   color: white;
   font-size: 1.2em;
+  background: none;
+  border: none;
 }
   .copyright {
     color: white;
@@ -98,5 +100,29 @@ button {
   .logged {
     text-align: center;
     clor: white;
+  }
+  .account {
+    background-image: url('../../assets/account.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+  }
+  .call {
+    background-image: url('../../assets/call.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+  }
+  .home {
+    background-image: url('../../assets/home.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
   }
 </style>

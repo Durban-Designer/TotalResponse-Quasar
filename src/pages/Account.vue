@@ -298,7 +298,6 @@ export default {
   }
 
   .accountBox {
-    padding-top: 100px;
     text-align: center;
     overflow: hidden;
     height: 100%;

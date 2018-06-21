@@ -116,7 +116,7 @@ export default {
   h2 {
     color: white;
     width:100%;
-    grid-row: 2;
+    grid-row: 1;
     grid-column-start: 1;
     grid-column-end: 7;
     line-height: 30px;
@@ -124,7 +124,7 @@ export default {
 
   .loginMain {
     width: 100%;
-    grid-row: 4;
+    grid-row: 3;
     grid-column-start: 2;
     grid-column-end: 6;
     margin-top: -10%;
@@ -173,14 +173,14 @@ export default {
   }
 
   .signIn {
-    grid-row: 5;
+    grid-row: 4;
     grid-column-start: 2;
     grid-column-end: 6;
     margin-bottom: 10px;
   }
 
   .links {
-    grid-row: 6;
+    grid-row: 5;
     grid-column-start: 1;
     grid-column-end: 7;
     font-size: 1.5em;

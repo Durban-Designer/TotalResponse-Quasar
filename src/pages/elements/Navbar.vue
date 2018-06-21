@@ -1,6 +1,6 @@
 <template>
   <div id="Navbar" class="nav">
-    <h3 v-on:click="homeNav">Total Response</h3>
+    <div class="logo" v-on:click="homeNav"></div>
     <div v-bind:class="navpane" class="navpane">
       <center>
         <div v-on:click="loginNav" v-bind:class="login">Login</div>
@@ -128,20 +128,22 @@ document.addEventListener('touchstart', function () {}, true)
   @bodyText: "LiberationSans";
 
   .nav {
-    height: 0px;
+    height: 80px;
     display: grid;
-    grid-template-columns: 10px repeat(5, 1fr) 10px;
-    z-index: 10;
+    grid-template-columns: repeat(5, 1fr);
+    z-index: 11;
+    background-image: url('../../assets/noise.png');
+    box-shadow: 0px 2px 5px black;
   }
 
   .logo {
+    background-image: url('../../assets/trwhite.svg');
     background-repeat: no-repeat;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row: 1;
-    height: auto;
-    width: 270px;
-    transform: scale(.70,.70)
+    background-size: contain;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    transform: scale(.70,.70);
   }
 
   h3 {
