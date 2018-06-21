@@ -6,7 +6,7 @@
       <h3>Sending Location...</h3>
     </div>
     <div v-bind:class="callIcons">
-      <h1>What's Your Emergency?</h1>
+      <h1>How Can We Help?</h1>
       <!-- Fire Tokens -->
       <div v-bind:class="fireTokenLogic" v-on:click="fireToken"><div class="fireIcon"></div></div>
       <div v-bind:class="buildingFireTokenLogic" v-on:click="buildingFire">Building Fire</div>
