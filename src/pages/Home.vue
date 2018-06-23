@@ -26,6 +26,7 @@ export default {
       logged: true,
       latitude: '',
       longitude: '',
+      accuracy: '',
       coordinates: [0, 0],
       mapboxToken: 'pk.eyJ1IjoiZ3JhcGV0b2FzdCIsImEiOiJjajhkeHR5YzEwdXp4MnpwbWhqYzI4ejh0In0.JzUlf5asD6yOa5XvjUF5Ag',
       mapOptions: {
@@ -58,6 +59,17 @@ export default {
       new mapboxgl.Marker(vue.marker)
         .setLngLat(vue.coordinates)
         .addTo(vue.map)
+    },
+    locationSuccess (position) {
+      let vue = this
+      vue.latitude = position.coords.latitude
+      vue.longitude = position.coords.longitude
+      vue.accuracy = position.coords.accuracy
+      vue.coordinates = [vue.longitude, vue.latitude]
+    },
+    locationFail () {
+      alert('It seems we cant find you, please reload the page and try again.')
+      this.locationError = true
     }
   }
 }
@@ -92,7 +104,7 @@ h1 {
 #map {
   width: 100%;
   height: 100%;
-  padding-bottom: 50px;
+  padding-top: 0px;
   z-index: 0;
   position: fixed;
   top: 190px;
